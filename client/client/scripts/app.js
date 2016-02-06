@@ -5,7 +5,7 @@ var friendsList = [];
 var app;
 $(document).ready(function() {
   app = {
-    server: 'https://api.parse.com/1/classes/chatterbox',
+    server: 'http://127.0.0.1:3000/classes/',
     room: 'lobby',
     username: 'anonymous',
 
@@ -26,7 +26,7 @@ $(document).ready(function() {
         success: function (data) {
           app.fetch();
           console.log('chatterbox: Message sent. Data: ', data);
-          app.stopSpinner(); 
+          app.stopSpinner();
         },
         error: function (data) {
           console.error('chatterbox: Failed to send message. Error: ', data);
@@ -43,7 +43,7 @@ $(document).ready(function() {
         contentType: 'application/json',
         success: function (data){
           app.selectRoom(data);
-          app.stopSpinner(); 
+          app.stopSpinner();
           console.log('chatterbox: Messages received. Data: ', data);
         },
         error: function (data) {
@@ -55,7 +55,7 @@ $(document).ready(function() {
     //CLEAR MESSAGES FROM CHATS
     clearMessages: function() {
       $("#chats").empty();
-      
+
     },
 
     //
@@ -69,7 +69,7 @@ $(document).ready(function() {
             var msg= $('<span class="friend"></span>');
             break;
           }
-        }   
+        }
         msg.text(data.results[i].text || '');
         var line = $('<div class="chat"></div>');
         line.append(user);
@@ -119,9 +119,9 @@ $(document).ready(function() {
           }
           for (var key in rooms) {
             $("#roomSelect").append($("<option></option>").val(key).html(key));
-          }   
+          }
           console.log('chatterbox: Messages received. Data: ', data);
-          app.stopSpinner();  
+          app.stopSpinner();
         },
         error: function (data) {
           console.error('chatterbox: Failed to receive message. Error: ', data);
